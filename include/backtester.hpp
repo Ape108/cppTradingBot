@@ -8,7 +8,7 @@ class Backtester {
 public: 
     Backtester(const std::vector<Candlestick> data, Strategy& strat);
     void run();
-    void print_results();
+    void print_results(double initial_investment);
 
 private:
     std::vector<Candlestick> historical_data;
@@ -20,5 +20,6 @@ private:
     double calculate_mean();
     double calculate_variance(double mean);
     double calculate_win_rate();
+    double calculate_total_return(double initial, double mean, int num_trades);
 
 };

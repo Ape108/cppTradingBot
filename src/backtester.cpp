@@ -33,20 +33,26 @@ void Backtester::run() {
     }
 }
 
-void Backtester::print_results() {
+void Backtester::print_results(double initial_investment) {
     if (trade_returns.empty()) {
         std::cout << "No trades made." << std::endl;
         return;
     }
+    
     double mean = calculate_mean(); // E[X]
     double variance = calculate_variance(mean); // Var(X)
     double std_dev = std::sqrt(variance); // σ_X
     double win_rate = calculate_win_rate(); // P(Win)
+    int num_trades = trade_returns.size();
+    double total_return = calculate_total_return(initial_investment, mean, num_trades);
 
-    std::cout << "Total Trades: " << trade_returns.size() << std::endl;
+
+    std::cout << "Total Trades: " << num_trades << std::endl;
     std::cout << "Win Rate: " << std::fixed << std::setprecision(2) << (win_rate * 100) << "%" << std::endl;
     std::cout << "Expected Value: " << std::fixed << std::setprecision(2) << (mean * 100) << "%" << std::endl;
     std::cout << "Standard Deviation: " << std::fixed << std::setprecision(2) << (std_dev * 100) << "%" << std::endl;
+    std::cout << "Initial Investment: $" << std::fixed << std::setprecision(2) << initial_investment << std::endl;
+    std::cout << "Total Return: $" << std::fixed << std::setprecision(2) << total_return << std::endl;
 
     if (mean > 0) {
         std::cout << "The strategy has a positive expected value." << std::endl;
@@ -74,4 +80,9 @@ double Backtester::calculate_variance(double mean) {
         sum_of_squares += (pct_return - mean) * (pct_return - mean);
     }
     return sum_of_squares / (trade_returns.size() - 1);
+}
+
+double Backtester::calculate_total_return(double initial, double mean, int num_trades) {
+    double total_return = initial * std::pow((1.0 + mean), num_trades);
+    return total_return;
 }
