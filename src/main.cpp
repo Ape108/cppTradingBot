@@ -42,9 +42,11 @@ int main() {
         std::cout << "Setting up experiment..." << std::endl;
         const std::string& filepath = "data/BTC-USD.csv";
         std::vector<Candlestick> data = load_csv_data(filepath);
+
         const int FAST_PERIOD = 20;
         const int SLOW_PERIOD = 50;
         const double INITIAL_INVESTMENT = 10000.00;
+        
         Strategy my_strategy(FAST_PERIOD, SLOW_PERIOD);
         Backtester my_engine(data, my_strategy);
         my_engine.run();
