@@ -6,8 +6,7 @@ Strategy::Strategy(int fast_sma_period, int slow_sma_period)
       slow_period(slow_sma_period),
       current_fast_sma(0.0),
       current_slow_sma(0.0) 
-{
-    
+{ 
 }
 
 Signal Strategy::process_candlestick(const Candlestick& candle) {

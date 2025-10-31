@@ -40,7 +40,7 @@ int main() {
 
     try {
         std::cout << "Setting up experiment..." << std::endl;
-        const std::string& filepath = "data/BTC-USD.csv";
+        const std::string& filepath = "data/NVDA.csv";
         std::vector<Candlestick> data = load_csv_data(filepath);
 
         const int FAST_PERIOD = 20;
