@@ -16,8 +16,7 @@ private:
 
     std::deque<double> recent_prices;
 
-    double last_fast_sma;
-    double last_slow_sma;
+    double current_fast_sma;
+    double current_slow_sma;
 
-    double calculate_sma(int period);
 };
